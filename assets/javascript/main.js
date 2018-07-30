@@ -1,37 +1,34 @@
 
-
-
-
 var movies = ["cats", "dogs", "cows", "lions"];
 
 
 function displaySearchInfo() {
     $(".show-movie-info").empty();
     var clickedValue = $(this).attr("data-name");
-    console.log(clickedValue);
+    // console.log(clickedValue);
 
 
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + clickedValue + "&api_key=xl2g2fBoLlaf4I46IWkUA9yZES0KiLUt&limit=10"
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + clickedValue + "&api_key=xl2g2fBoLlaf4I46IWkUA9yZES0KiLUt&limit=10"
 
-    console.log(queryURL);
+    // console.log(queryURL);
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
         var location = response.data;
-        console.log(response);
-        console.log("this is location: " + location);
+        // console.log(response);
+        // console.log("this is location: " + location);
 
 
         for (var i = 0; i < location.length; i++) {
-            var still = location[i].images["480w_still"].url;
-            var video = location[i].images.original_mp4.mp4;
+            var still = location[i].images.fixed_height_still.url;
+            var video = location[i].images.fixed_height.url;
             var rating = location[i].rating;
 
             var newDiv = $("<div>");
             newDiv.addClass("gif-div").addClass("smallDiv");
             var newImg = $("<img>");
-            newImg.attr("src", still).attr("data-pause", still).attr("data-play", video).addClass("gif-btn");
+            newImg.attr("src", still).attr("data-pause", still).attr("data-play", video).attr("data-state", "paused").addClass("gif-btn");
             var newP = $("<div>");
             newP.text("Rated: " + rating);
 
@@ -40,17 +37,43 @@ function displaySearchInfo() {
         };
 
 
-        console.log(response.data[0].images["480w_still"].url);
+        
         // https://media2.giphy.com/media/eDgmbiQcujjsA/480w_s.jpg
         // width: 480, height 270;
 
-        console.log(response.data[0].images.original_mp4.mp4);
+        
         // https://media3.giphy.com/media/eDgmbiQcujjsA/giphy.mp4
         // width: 480, height: 270;
 
 
 
     });
+};
+
+
+function playPause() {
+
+    var dataState = $(this).attr("data-state");
+    console.log("this is dataState: " + dataState);
+
+    if (dataState === "paused") {
+      
+        $(this).attr("data-state", "play");
+
+        var newSrc = $(this).attr("data-play");
+        console.log(newSrc);
+        $(this).attr("src", newSrc);
+
+
+
+    } else if (dataState === "play") {
+        $(this).attr("data-state", "paused");
+
+        var newSrc = $(this).attr("data-pause");
+        $(this).attr("src", newSrc);
+
+    };
+
 };
 
 
@@ -86,5 +109,9 @@ $("#reset").on("click", function() {
 })
 
 $(document).on("click", ".movie", displaySearchInfo);
+
+
+// click to play/pause
+$(document).on("click", ".gif-btn", playPause);
 
 renderButtons();
