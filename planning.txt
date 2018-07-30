@@ -1,0 +1,26 @@
+
+
+current url = paused
+
+data-state = paused
+
+$(onclick) 
+
+ var dataState = $(this).attr("data-state");
+
+if (dataState === "paused") {
+    paused = false;
+$(this).attr("data-state", "true");
+
+var newSrc = $(this).attr("data-play");
+$(this).attr("src", newSrc);
+
+
+
+} else if (dataState === "play") {
+    $(this).attr("data-state", "false");
+
+    var newSrc = $(this).attr("data-pause");
+    $(this).attr("src", newSrc);
+
+}

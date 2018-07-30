@@ -1,0 +1,70 @@
+
+
+body {
+  background: lightblue;
+
+}
+
+
+.top-container {
+  padding: 10px;
+  background: lightgrey;
+  border: 2px solid black;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: bolder;
+
+}
+
+.movie-form-box {
+  padding: 10px;
+}
+
+
+.movie {
+  margin: 10px;
+  padding: 3px;
+}
+
+.movie:hover {
+  color: blue;
+}
+
+#add-movie {
+  margin: 10px;
+}
+
+.hi {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+  font-weight: bolder;
+
+}
+
+.pic {
+  width: 150px;
+  height: auto;
+}
+
+.show-movie-info {
+  /* margin-left: auto;
+  margin-right: auto; */
+  width: 100%;
+}
+
+
+.smallDiv {
+  width: 90%;
+  display: inline-block;
+  /* border-right: 1px solid gray; */
+  border: 1px solid black;
+  padding: 10px;
+  background: lightgray;
+
+}
+.gif-btn {
+  width: 90%;
+}
