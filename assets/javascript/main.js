@@ -1,24 +1,18 @@
 
-var movies = ["cats", "dogs", "cows", "lions"];
+var movies = ["cats", "dogs", "pizza", "lions", "falling", "texas ranger", "pickup truck", "css"];
 
 
 function displaySearchInfo() {
     $(".show-movie-info").empty();
     var clickedValue = $(this).attr("data-name");
-    // console.log(clickedValue);
-
 
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + clickedValue + "&api_key=xl2g2fBoLlaf4I46IWkUA9yZES0KiLUt&limit=10"
 
-    // console.log(queryURL);
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
         var location = response.data;
-        // console.log(response);
-        // console.log("this is location: " + location);
-
 
         for (var i = 0; i < location.length; i++) {
             var still = location[i].images.fixed_height_still.url;
@@ -33,56 +27,33 @@ function displaySearchInfo() {
             newP.text("Rated: " + rating);
 
             newDiv.append(newImg).append(newP);
-            $(".show-movie-info").prepend(newDiv).prepend("<hr>");
+            var line = $("<hr>").addClass("line");
+            $(".show-movie-info").prepend(newDiv).prepend(line);
         };
-
-
-        
-        // https://media2.giphy.com/media/eDgmbiQcujjsA/480w_s.jpg
-        // width: 480, height 270;
-
-        
-        // https://media3.giphy.com/media/eDgmbiQcujjsA/giphy.mp4
-        // width: 480, height: 270;
-
-
 
     });
 };
 
 
 function playPause() {
-
     var dataState = $(this).attr("data-state");
-    console.log("this is dataState: " + dataState);
 
     if (dataState === "paused") {
-      
         $(this).attr("data-state", "play");
-
         var newSrc = $(this).attr("data-play");
-        console.log(newSrc);
         $(this).attr("src", newSrc);
-
-
 
     } else if (dataState === "play") {
         $(this).attr("data-state", "paused");
-
         var newSrc = $(this).attr("data-pause");
         $(this).attr("src", newSrc);
-
     };
-
 };
 
-
 function renderButtons() {
-    
     $("#buttons-view").empty();
-   
+
     for (var i = 0; i < movies.length; i++) {
-     
         var a = $("<button>");
         a.addClass("movie");
         a.attr("data-name", movies[i]);
@@ -99,7 +70,6 @@ $("#add-movie").on("click", function (event) {
     movies.push(movie);
     renderButtons();
     $("#movie-input").val("");
-
 });
 
 $("#reset").on("click", function() {

@@ -6,21 +6,15 @@ var movies = ["cats", "dogs", "cows", "lions"];
 function displaySearchInfo() {
     $(".show-movie-info").empty();
     var clickedValue = $(this).attr("data-name");
-    // console.log(clickedValue);
-
 
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + clickedValue + "&api_key=xl2g2fBoLlaf4I46IWkUA9yZES0KiLUt&limit=10"
 
-    // console.log(queryURL);
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
         var location = response.data;
-        // console.log(response);
-        // console.log("this is location: " + location);
-
-
+   
         for (var i = 0; i < location.length; i++) {
             var still = location[i].images.fixed_height_still.url;
             var video = location[i].images.fixed_height.url;
@@ -36,17 +30,6 @@ function displaySearchInfo() {
             newDiv.append(newImg).append(newP);
             $(".show-movie-info").prepend(newDiv).prepend("<hr>");
         };
-
-
-        
-        // https://media2.giphy.com/media/eDgmbiQcujjsA/480w_s.jpg
-        // width: 480, height 270;
-
-        
-        // https://media3.giphy.com/media/eDgmbiQcujjsA/giphy.mp4
-        // width: 480, height: 270;
-
-
 
     });
 };

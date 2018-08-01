@@ -50,8 +50,7 @@ body {
 }
 
 .show-movie-info {
-  /* margin-left: auto;
-  margin-right: auto; */
+
   width: 100%;
 }
 
@@ -59,7 +58,7 @@ body {
 .smallDiv {
   width: 90%;
   display: inline-block;
-  /* border-right: 1px solid gray; */
+
   border: 1px solid black;
   padding: 10px;
   background: lightgray;
@@ -68,3 +67,27 @@ body {
 .gif-btn {
   width: 90%;
 }
+
+
+
+@media screen and (min-width: 992px) {
+  
+  .smallDiv {
+    margin: 10px;
+    width: 31%;
+    float: left;
+    height: 300px;
+   
+  }
+
+  .line {
+    display: none;
+  }
+
+  .gif-btn {
+    width: 90%;
+    height: 250px;
+  }
+
+}
+
